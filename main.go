@@ -60,7 +60,6 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-
 	fmt.Println("Successfully installed the CIVO plugin")
 
 	stackInlineSource.SetConfig(ctx, "civo:token", auto.ConfigValue{Value: os.Getenv("CIVO_TOKEN")})
