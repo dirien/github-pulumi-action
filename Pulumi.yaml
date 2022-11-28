@@ -1,0 +1,3 @@
+name: github-pulumi-action
+description: A minimal Go Pulumi program
+runtime: go
