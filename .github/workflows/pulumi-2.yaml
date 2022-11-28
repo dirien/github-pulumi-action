@@ -25,7 +25,12 @@ jobs:
         with:
           go-version: 1.17
       - run: go mod download
+      - run: go run .
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.pulumi-access-token }}
+          CIVO_TOKEN: ${{ secrets.civo-token }}
       - uses: pulumi/actions@06bc93fb6890a1d5bc8e4fab9a2354389011666b # v3.20.0
+        condition: false
         with:
           command: preview
           stack-name: ${{ inputs.stack-name }}
