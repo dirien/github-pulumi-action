@@ -1,9 +1,19 @@
-name: Pulumi
+name: Reusable Pulumi Workflow
 
 on:
-  push:
-    tags:
-      - 'x.y.z'
+  workflow_call:
+    inputs:
+      stack-name:
+        description: 'The name of the stack to operate on'
+        required: true
+        type: string
+    secrets:
+      pulumi-access-token:
+        description: 'The Pulumi access token to use'
+        required: true
+      civo-token:
+        description: 'The Civo token to use'
+        required: true
 
 jobs:
   preview:
@@ -18,12 +28,12 @@ jobs:
       - uses: pulumi/actions@06bc93fb6890a1d5bc8e4fab9a2354389011666b # v3.20.0
         with:
           command: preview
-          stack-name: dev
+          stack-name: ${{ inputs.stack-name }}
           comment-on-pr: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          CIVO_TOKEN: ${{ secrets.CIVO_TOKEN }}
+          PULUMI_ACCESS_TOKEN: ${{ secrets.pulumi-access-token }}
+          CIVO_TOKEN: ${{ secrets.civo-token }}
   up:
     name: Up
     runs-on: ubuntu-latest
@@ -39,8 +49,8 @@ jobs:
       - uses: pulumi/actions@06bc93fb6890a1d5bc8e4fab9a2354389011666b # v3.20.0
         with:
           command: up
-          stack-name: dev
+          stack-name: ${{ inputs.stack-name }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          CIVO_TOKEN: ${{ secrets.CIVO_TOKEN }}
+          PULUMI_ACCESS_TOKEN: ${{ secrets.pulumi-access-token }}
+          CIVO_TOKEN: ${{ secrets.civo-token }}
