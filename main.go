@@ -48,7 +48,7 @@ func main() {
 	}
 	ctx := context.Background()
 
-	stackInlineSource, err := auto.UpsertStackInlineSource(ctx, "dirien/github-pulumi-action/dev", "github-pulumi-action", deployFunc)
+	stackInlineSource, err := auto.UpsertStackInlineSource(ctx, "dev", "github-pulumi-action", deployFunc)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
