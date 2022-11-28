@@ -1,13 +1,19 @@
-name: Pulumi
+name: Reusable Pulumi Workflow
 
 on:
-  push:
-    tags:
-      - '*'
-  pull_request:
-    paths-ignore:
-      - '**/.github/'
-
+  workflow_call:
+    inputs:
+      stack-name:
+        description: 'The name of the stack to operate on'
+        required: true
+        type: string
+    secrets:
+      pulumi-access-token:
+        description: 'The Pulumi access token to use'
+        required: true
+      civo-token:
+        description: 'The Civo token to use'
+        required: true
 jobs:
   preview:
     name: Preview
@@ -25,8 +31,8 @@ jobs:
           comment-on-pr: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          CIVO_TOKEN: ${{ secrets.CIVO_TOKEN }}
+          PULUMI_ACCESS_TOKEN: ${{ secrets.pulumi-access-token }}
+          CIVO_TOKEN: ${{ secrets.civo-token }}
   up:
     name: Up
     runs-on: ubuntu-latest

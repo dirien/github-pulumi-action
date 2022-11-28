@@ -8,8 +8,8 @@ import (
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
 
-		instance, err := civo.NewInstance(ctx, "test", &civo.InstanceArgs{
-			Hostname:         pulumi.String("test"),
+		instance, err := civo.NewInstance(ctx, "test2334", &civo.InstanceArgs{
+			Hostname:         pulumi.String("test2334"),
 			Region:           pulumi.String("FRA1"),
 			Size:             pulumi.String("g3.large"),
 			PublicIpRequired: pulumi.String("create"),
@@ -20,7 +20,7 @@ func main() {
 			return err
 		}
 
-		ctx.Export("ip", instance.PublicIp)
+		ctx.Export("ip!", instance.PublicIp)
 
 		return nil
 	})
