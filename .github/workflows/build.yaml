@@ -1,0 +1,18 @@
+name: Pulumi
+
+on:
+  push:
+    tags:
+      - '*'
+  pull_request:
+    paths-ignore:
+      - '**/.github/'
+
+jobs:
+  call-pulumi-workflow:
+    uses: ./.github/workflows/pulumi-2.yaml
+    with:
+      stack-name: dev
+    secrets:
+      pulumi-access-token: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+      civo-token: ${{ secrets.CIVO_TOKEN }}
