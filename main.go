@@ -31,8 +31,8 @@ func main() {
 	*/
 
 	deployFunc := func(ctx *pulumi.Context) error {
-		instance, err := civo.NewInstance(ctx, "test", &civo.InstanceArgs{
-			Hostname:         pulumi.String("test"),
+		instance, err := civo.NewInstance(ctx, "test2", &civo.InstanceArgs{
+			Hostname:         pulumi.String("test2"),
 			Region:           pulumi.String("FRA1"),
 			Size:             pulumi.String("g3.large"),
 			PublicIpRequired: pulumi.String("create"),
