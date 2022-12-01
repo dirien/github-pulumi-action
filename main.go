@@ -53,7 +53,7 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	fmt.Println("Installing the CIVO plugin!")
+	fmt.Println("Installing the CIVO plugin")
 
 	err = stackInlineSource.Workspace().InstallPlugin(ctx, "civo", "v2.3.0")
 	if err != nil {
