@@ -10,7 +10,7 @@ on:
 
 jobs:
   call-pulumi-workflow:
-    uses: ./.github/workflows/pulumi-2.yaml
+    uses: ./.github/workflows/pulumi.yaml
     with:
       stack-name: dev
     secrets:
