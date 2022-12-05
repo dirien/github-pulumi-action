@@ -31,8 +31,8 @@ jobs:
           comment-on-pr: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          CIVO_TOKEN: ${{ secrets.CIVO_TOKEN }}
+          PULUMI_ACCESS_TOKEN: ${{ secrets.pulumi-access-token }}
+          CIVO_TOKEN: ${{ secrets.civo-token }}
   up:
     name: Up
     runs-on: ubuntu-latest
